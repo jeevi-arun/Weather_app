@@ -7,6 +7,7 @@ const Weather = () => {
     const [weather, setWeather]=useState("")
     const [temparature, setTemparature]=useState("")
     const[desc,setDesc]=useState("")
+    const [showWeather, setShowWeather] = useState(false);
 
     function handleCity(event){
         setCity(event.target.value)
@@ -21,6 +22,7 @@ const Weather = () => {
         setWeather(success.data.weather[0].main)
         setDesc(success.data.weather[0].description)
         setTemparature((success.data.main.temp - 273.15).toFixed(2))
+         setShowWeather(true)
     
     })
     
@@ -35,9 +37,14 @@ const Weather = () => {
             <input  onChange={handleCity} type='text' className='mt-2 border border-black rounded p-3' placeholder='Enter your city name'></input>
             <br></br>
             <button type='submit' className='mt-2 bg-black text-white p-2 rounded' onClick={getWeather}>Get report</button>
-            <p className='mt-2 font-bold'>Weather: {weather} </p>
+               {showWeather &&(
+                <div>
+                    <p className='mt-2 font-bold'>Weather: {weather} </p>
             <p className='mt-2 font-bold'>Temparature: {temparature}°C </p>
             <p className='mt-2 font-bold'>Description: {desc} </p>
+            </div>
+               )}
+            
         </div>
     </div>
     </>
