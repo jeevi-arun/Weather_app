@@ -20,7 +20,7 @@ const Weather = () => {
         console.log(success.data)
         setWeather(success.data.weather[0].main)
         setDesc(success.data.weather[0].description)
-        setTemparature(success.data.main.temp)
+        setTemparature((success.data.main.temp - 273.15).toFixed(2))
     
     })
     
@@ -36,7 +36,7 @@ const Weather = () => {
             <br></br>
             <button type='submit' className='mt-2 bg-black text-white p-2 rounded' onClick={getWeather}>Get report</button>
             <p className='mt-2 font-bold'>Weather: {weather} </p>
-            <p className='mt-2 font-bold'>Temparature: {temparature} </p>
+            <p className='mt-2 font-bold'>Temparature: {temparature}°C </p>
             <p className='mt-2 font-bold'>Description: {desc} </p>
         </div>
     </div>
